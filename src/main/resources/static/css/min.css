@@ -1,0 +1,147 @@
+
+
+
+ .error {
+     color: red;
+ }
+
+
+.orangeButton {
+    color: white;
+    background-color: orange;
+    border-style: none;
+    border-radius: 5px;
+    line-height: 3.5;
+    padding: 0 60px;
+    font-size: 1.2rem;
+}
+
+.blueButton {
+    color: white;
+    background-color: blue;
+    border-style: none;
+    border-radius: 5px;
+    line-height: 3.5;
+    width: 80px;
+    font-size: 1.2rem;
+}
+ .blueButton150 {
+     color: white;
+     background-color: blue;
+     border-style: none;
+     border-radius: 5px;
+     line-height: 3.5;
+     padding: 0 60px;
+     font-size: 1.2rem;
+     width: 100px;
+ }
+
+.navButton {
+    color: black;
+    background-color: white;
+    border-style: none;
+    border-radius: 5px;
+    line-height: 1.5;
+    padding: 0 40px;
+    font-size: 1.2rem;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid rgb(160 160 160);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid rgb(160 160 160);
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+caption {
+    caption-side: top;
+    padding: 10px;
+    font-weight: bold;
+}
+
+th, td {
+    border-top: 1px solid rgb(160 160 160);
+    border-right: 0 solid rgb(160 160 160);
+    border-bottom: 1px solid rgb(160 160 160);
+    border-left: 0 solid rgb(160 160 160);
+    padding: 1rem;
+    width:450px;
+    line-height:30px;
+vertical-align:bottom;
+}
+
+.text-align-right{
+    text-align:right;
+}
+
+.text-align-left{
+    text-align:left;
+}
+
+.input150 {
+    text-align:left;
+    width:150px;
+    line-height:30px;
+    font-size: 0.9rem;
+}
+
+.input400 {
+    text-align:left;
+    width:400px;
+    font-size: 2rem;
+}
+
+.input500 {
+    text-align:left;
+    width:500px;
+    font-size: 2rem;
+}
+
+button:visited {
+    color: blue;
+}
+
+.box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 1px 2em;
+}
+
+.box :first-child {
+    align-self: center;
+}
+
+.centerBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    gap: 1px 2em;
+    align-content: center;
+}
+
+.centerBox :first-child {
+    align-self: center;
+}
+
+ .box5 {
+     display: grid;
+     grid-template-columns: 450px 450px 170px 10px 270px ;
+     gap: 1px 2em;
+ }
+
+ .box6 {
+     display: grid;
+     grid-template-columns: 225px 225px 225px 225px 225px 225px ;
+     gap: 1px 2em;
+ }
+ .text-align-right{
+     text-align:right;
+ }

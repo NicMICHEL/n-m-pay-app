@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>UserPayApp Registration Form</title>
+    <link rel="stylesheet" th:href="@{/css/min2.css}"/>
+</head>
+<body>
+<header th:insert="~{fragments/general.html :: navigationbar}"></header>
+
+<form action="#" th:action="@{/updateUserPayApp}" th:object="${userPayAppDTO}"
+      method="POST">
+
+    <br><br>
+
+    <div class="centerBox700">
+    <div></div>
+    <div>
+    <table >
+
+        <tr>
+            <td colspan="2" class="text-align-left">Votre Mail ne peut être modifié.</td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <br>
+
+        <tr>
+            <td class="text-align-left">Mot de passe</td>
+            <td><input type="password" th:field="*{passWord}" id="passWord" placeholder="mot de passe"
+                       class="inputWithoutBorder"/></td>
+            <td rowspan="2"><input type="submit" value="Modifier" class="orangeButton"/></td>
+        </tr>
+
+        <br>
+
+        <tr>
+            <td class="text-align-left">Compte bancaire associé</td>
+            <td ><input type="text" th:field="*{selfAccount}" id="selfAccount" placeholder="Compte bancaire associé"
+                        class="inputWithoutBorder"/></td>
+
+        </tr>
+
+        <br>
+
+        <tr>
+
+            <td colspan="3"><div th:if="${#fields.hasGlobalErrors()}">
+
+                <p th:each="err : ${#fields.globalErrors() }" th:text="${err}" class="error" />
+            </div></td>
+
+        </tr>
+
+    </table>
+</div>
+
+    </div>
+
+
+
+
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      >
+<head >
+    <meta charset="UTF-8">
+    <title>UserPayApp Registration Form</title>
+    <link rel="stylesheet" th:href="@{/css/min.css}"/>
+
+</head>
+
+
+<body>
+<header th:insert="~{fragments/general.html :: navigationbar}"></header>
+<!--
+<form th:action="@{/editTransaction}" method="get">
+    <button type="submit" th:text="Transférer">
+        Transférer
+    </button>
+</form>
+<form th:action="@{/editUserPayApp}" method="get">
+    <button type="submit" th:text="Profil">
+        Profil
+    </button>
+</form>
+<form th:action="@{/editBeneficiariesUserList}" method="get">
+    <button type="submit" th:text="Relation">
+        Ajouter Relation
+    </button>
+</form>
+<form th:action="@{/logout}" method="post">
+    <button type="submit" th:text="signout">
+        Se déconnecter
+    </button>
+</form>
+
+<div class="box4">
+        <tr>
+            <td><select class="input400"  id="beneficiariesUser" th:field="*{emailCreditedAccount}">
+                <option value="0" >Selectionner une relation</option>
+                <option th:each="option : ${emailsBeneficiariesUserList}" th:value="${option}" th:text="${option}"></option>
+            </select></td>
+            <td>  <input type="text"  th:field="*{description}" placeholder="description" class="input400"/>          </td>
+            <td><input type="number" min="0" th:max="${amountMax}" th:field="*{amount}" placeholder="0" class="input150"/>
+                 €<input type="submit" value="Payer" class="blueButton"/>
+               </td>
+            <td> </td>
+        </tr>
+    </div>
+-->
+
+<br><br>
+
+
+
+<!--
+<form action="#" th:action="@{/addTransaction/{idUser}(idUser=${transactionDTO.debitedAccountId})}"
+      th:object="${transactionDTO}" method="POST">
+-->
+<form action="#" th:action="@{/addTransaction}"
+      th:object="${transactionDTO}" method="POST">
+
+    <div class="box5">
+        <tr>
+            <td><select class="input400"  id="beneficiariesUser" th:field="*{emailCreditedAccount}">
+                <option value="0" >Selectionner une relation</option>
+                <option th:each="option : ${emailsBeneficiariesUserList}" th:value="${option}" th:text="${option}"></option>
+            </select></td>
+            <td>  <input type="text"  th:field="*{description}" placeholder="description" class="input400"/>          </td>
+            <td><input type="number" min="0" th:max="${amountMax}" th:field="*{amount}" placeholder="0" class="input150"/>
+
+            </td>
+            <td><br>€</td>
+            <td class="text-align-right"><input type="submit" value="Payer" class="blueButton"/> </td>
+        </tr>
+    </div>
+
+<!--
+    <select class="input400"  id="beneficiariesUser" th:field="*{emailCreditedAccount}">
+        <option value="0" >Selectionner une relation</option>
+        <option th:each="option : ${emailsBeneficiariesUserList}" th:value="${option}" th:text="${option}"></option>
+    </select>
+
+
+    <input type="text"  th:field="*{description}" placeholder="description" class="input400"/>
+
+
+   <input type="number" min="0" th:max="${amountMax}" th:field="*{amount}" placeholder="0" class="input150"/> <span> €</span>
+
+
+    <input type="submit" value="Payer" class="blueButton"/>
+    -->
+
+    <br></br>
+    <br></br>
+    <div th:if="${#fields.hasGlobalErrors()}">
+
+    <p th:each="err : ${#fields.globalErrors() }" th:text="${err}" class="error" />
+</div>
+</form>
+    <table>
+
+
+    <tr>
+        <th class="text-align-left">Mes transactions<br>Relation</th>
+        <th class="text-align-left">Description</th>
+        <th class="text-align-right">Montant</th>
+    </tr>
+    <br>
+    <tr th:each="pastTransaction : ${pastTransactionDTOs}">
+        <td th:text="${pastTransaction.emailCreditedAccount}" class="text-align-left"></td>
+        <td th:text="${pastTransaction.description}" class="text-align-left"></td>
+        <td th:text="${pastTransaction.amount}+' €'" class="text-align-right"></td>
+    </tr>
+        <br>
+        </table>
+
+
+</body>
+</html>
