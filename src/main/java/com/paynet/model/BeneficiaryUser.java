@@ -1,13 +1,9 @@
-
 package com.paynet.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.Objects;
-
 
 @Entity
 @Table(name = "b_beneficiary_user")
@@ -18,7 +14,6 @@ public class BeneficiaryUser {
     @Id
     @Column(name = "b_fk_id_user")
     private int idUser;
-
     @Id
     @Column(name = "b_fk_id_beneficiary")
     private int idBeneficiary;
@@ -66,8 +61,5 @@ public class BeneficiaryUser {
     public int hashCode() {
         return Objects.hash(getIdUser(), getIdBeneficiary());
     }
+
 }
-
-
-
-

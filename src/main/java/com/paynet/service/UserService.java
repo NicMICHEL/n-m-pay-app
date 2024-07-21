@@ -17,34 +17,39 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-
+    private static final Logger logger = LogManager.getLogger(UserService.class);
 
     public List<UserPayApp> getUsers() {
         return (List<UserPayApp>) userRepository.findAll();
     }
 
-    public Optional<UserPayApp> getUserById(Integer id) {return userRepository.findById(id);}
+    public UserPayApp getUserById(Integer id) throws IllegalArgumentException {
+        Optional<UserPayApp> userPayApp = userRepository.findById(id);
+        if (userPayApp.isPresent()) {
+            return userPayApp.get();
+        } else {
+            logger.error("Unable to find userPayApp corresponding to id {}", id);
+            throw new IllegalArgumentException("Invalid user id");
+        }
+    }
 
     @Transactional
-    public UserPayApp saveUser(UserPayApp userPayApp) {return userRepository.save(userPayApp);
+    public void saveUser(UserPayApp userPayApp) {
+        userRepository.save(userPayApp);
     }
 
+    public String getEmailById(Integer id) throws IllegalArgumentException {
+        return this.getUserById(id).getEmail();
+    }
 
-
-    // Optional !!!! Il faut vérifier la presence
-    public String getEmailById(Integer id) {return this.getUserById(id).get().getEmail();}
-
-    public UserPayApp getUserByEmail(String email) {return userRepository.findByEmail(email);}
+    public UserPayApp getUserByEmail(String email) throws IllegalArgumentException {
+        Optional<UserPayApp> userPayApp = userRepository.findByEmail(email);
+        if (userPayApp.isPresent()) {
+            return userPayApp.get();
+        } else {
+            logger.error("Unable to find userPayApp corresponding to email {}", email);
+            throw new IllegalArgumentException("Invalid user email");
+        }
+    }
 
 }
-
-/*
-private static final Logger logger = LogManager.getLogger(UserService.class);
-
- @Transactional
-    public UserPayApp updateUser(UserPayApp userPayApp) {return userRepository.save(userPayApp);
-    }
-    public void deleteUser(UserPayApp userPayApp) {userRepository.delete(userPayApp);}
-
-    public void deleteUserById(Integer id) {userRepository.deleteById(id);}
- */

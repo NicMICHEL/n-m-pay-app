@@ -11,8 +11,10 @@ public class UserPayAppMapper {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     public UserPayAppDTO toUserPayAppDTO(UserPayApp userPayApp) {
-        return new UserPayAppDTO(userPayApp.getEmail(), userPayApp.getSelfAccount());}
+        return new UserPayAppDTO(userPayApp.getEmail(), userPayApp.getSelfAccount());
+    }
 
     public UserPayApp toUserPayApp(UserPayAppDTO userPayAppDTO) {
         return new UserPayApp(userPayAppDTO.getEmail(),

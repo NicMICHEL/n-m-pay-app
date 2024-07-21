@@ -1,221 +1,77 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>UserPayApp Registration Form</title>
-    <link rel="stylesheet" th:href="@{/css/min2.css}"/>
-</head>
-<body>
-<header th:insert="~{fragments/general.html :: navigationbar}"></header>
-<!--
-<form th:action="@{/editTransaction}" method="get">
-    <button type="submit" th:text="Transférer">
-        Transférer
-    </button>
-</form>
-<form th:action="@{/editUserPayApp}" method="get">
-    <button type="submit" th:text="Profil" >
-        Profil
-    </button>
-</form>
-<form th:action="@{/editBeneficiariesUserList}" method="get">
-    <button type="submit" th:text="Relation">
-        Ajouter Relation
-    </button>
-</form>
-<form th:action="@{/logout}" method="post">
-    <button type="submit" th:text="signout">
-        Se déconnecter
-    </button>
-</form>
--->
-<br><br>
-
-
-
-<form action="#" th:action="@{/modifyBeneficiariesUserList}"
-      th:object="${beneficiaryUserDTO}" method="POST">
-<!--
-<form action="#" th:action="@{/modifyBeneficiariesUserList/{user.idUser}/{optionAdd}/{optionSupp}}"
-      th:object="${emailNoBeneficiariesUserList}" method="POST">
-      -->
-<!--
-    idUser <input type="text"  th:field="*{idUser}" placeholder="idUser" required/>
-    <span th:if="${#fields.hasErrors('idUser')}" th:errors="*{idUser}"
-          class="text-danger"></span>
-    <br><br>
--->
-    <!--
-    idBeneficiary <input type="text"  th:field="*{idBeneficiary}" placeholder="idBeneficiary" required/>
-
-    <span th:if="${#fields.hasErrors('idBeneficiary')}" th:errors="*{idBeneficiary}"
-          class="text-danger"></span>
-          -->
-    <!--
-    <table >
-        <tr>
-            <td >Ajouter une relation :</td>
-            <td >
-            <select class="form-control" id="emailNoBeneficiariesUserList" th:field="*{addBeneficiaryEmail}">
-                <option value="0" >Sélectionner une relation</option>
-                <option th:each="option : ${emailNoBeneficiariesUserList}" th:value="${option}"
-                        th:text="${option}"></option>
-            </select>
-            </td>
-            <td rowspan="2"><input type="submit" value="Enregistrer" class="orangeButton"/></td>
-        </tr>
+    <head>
+        <meta charset="UTF-8">
+        <title>Beneficiary user form</title>
+        <link rel="stylesheet" th:href="@{/css/min.css}"/>
+    </head>
+    <body>
+        <header th:insert="~{fragments/general.html :: navigationbar}"></header>
         <br>
-        <tr>
-            <td >Supprimer une relation :</td>
-            <td >
-                <select class="form-control" id="emailBeneficiariesUserList" th:field="*{suppBeneficiaryEmail}" >
-                    <option value="0" >Sélectionner une relation</option>
-                    <option th:each="option : ${emailBeneficiariesUserList}" th:value="${option}"
-                            th:text="${option}"></option>
-                </select>
-            </td>
-        </tr>
-
         <br>
-
-    </table>
--->
-    <div class="centerBox700">
-        <div></div>
-        <div>
-            <table >
-
-                <tr>
-                    <td >Ajouter une relation :</td>
-                    <td ></td>
-                </tr>
-                <br>
-                <tr>
-                    <td >
-                        <select class="form-control" id="emailsNoBeneficiariesUserList" th:field="*{addBeneficiaryEmail}">
-                            <option value="0" >Sélectionner une relation</option>
-                            <option th:each="option : ${emailsNoBeneficiariesUserList}" th:value="${option}"
-                                    th:text="${option}"></option>
-                        </select>
-                    </td>
-                    <td rowspan="3"><input type="submit" value="Enregistrer" class="orangeButton"/></td>
-                </tr>
-                <br>
-                <tr>
-                    <td >Supprimer une relation :</td>
-                    <td ></td>
-                </tr>
-                <br>
-                <tr>
-                    <td>
-                        <select class="form-control" id="emailsBeneficiariesUserList" th:field="*{suppBeneficiaryEmail}" >
-                            <option value="0" >Sélectionner une relation</option>
-                            <option th:each="option : ${emailsBeneficiariesUserList}" th:value="${option}"
-                                    th:text="${option}"></option>
-                        </select>
-                    </td>
-                    <td ></td>
-                </tr>
-
-                <br>
-                <tr>
-                    <td colspan="2">
-                        <div th:if="${#fields.hasGlobalErrors()}">
-
-                            <p th:each="err : ${#fields.globalErrors() }" th:text="${err}" class="error" />
-                        </div>
-                    </td>
-
-                </tr>
-            </table>
-        </div>
-        <div></div>
-    </div>
-
-
-
-    <br><br>
-<!--
-    Ajouter une relation :
-    <select class="form-control" id="emailNoBeneficiariesUserList" th:field="*{addBeneficiaryEmail}">
-        <option value="0" >Sélectionner une relation</option>
-        <option th:each="option : ${emailNoBeneficiariesUserList}" th:value="${option}"
-                th:text="${option}"></option>
-    </select>
-    <br><br>
-
-    Supprimer une relation :
-    <select class="form-control" id="emailBeneficiariesUserList" th:field="*{suppBeneficiaryEmail}" >
-        <option value="0" >Sélectionner une relation</option>
-        <option th:each="option : ${emailBeneficiariesUserList}" th:value="${option}"
-                th:text="${option}"></option>
-    </select>
-    <br><br>
-    <input type="submit" value="Enregistrer" class="orangeButton"/>
-    <div th:if="${#fields.hasGlobalErrors()}">
-        <h3>Global errors:</h3>
-        <p th:each="err : ${#fields.globalErrors() }" th:text="${err}" class="error" />
-    </div>
-     -->
-    <!--
-    <select th:field="*{idBeneficiary}">
-        <tr th:each="beneficiaryUser : ${beneficiariesUser}">
-
-        <option th:value="${beneficiaryUser.idBeneficiary}">${beneficiaryUser.idBeneficiary}</option>
-    </select>
-    -->
-    <br><br>
-<!--
-    <input type="submit" value="Ajouter" />
--->
-</form>
-
-</body>
+        <form action="#" th:action="@{/modifyBeneficiariesUserList}"
+              th:object="${beneficiaryUserDTO}" method="POST">
+            <div class="centerBox700">
+                <div></div>
+                <div>
+                    <table class="t2">
+                        <tr>
+                            <td >
+                                Ajouter une relation :
+                            </td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <label for="emailsNoBeneficiariesUserList">
+                                    <select class="form-control" id="emailsNoBeneficiariesUserList"
+                                            th:field="*{addBeneficiaryEmail}">
+                                        <option value="0">
+                                            Sélectionner une relation
+                                        </option>
+                                        <option th:each="option : ${emailsNoBeneficiariesUserList}" th:value="${option}"
+                                                th:text="${option}">
+                                        </option>
+                                    </select>
+                                </label>
+                            </td>
+                            <td rowspan="3">
+                                <input type="submit" value="Enregistrer" class="orangeButton"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                Supprimer une relation :
+                            </td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="emailsBeneficiariesUserList">
+                                    <select class="form-control" id="emailsBeneficiariesUserList"
+                                            th:field="*{suppBeneficiaryEmail}" >
+                                        <option value="0">
+                                            Sélectionner une relation
+                                        </option>
+                                        <option th:each="option : ${emailsBeneficiariesUserList}" th:value="${option}"
+                                                th:text="${option}">
+                                        </option>
+                                    </select>
+                                </label>
+                            </td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div th:if="${#fields.hasGlobalErrors()}">
+                                    <p th:each="err : ${#fields.globalErrors() }" th:text="${err}" class="error" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div></div>
+            </div>
+        </form>
+    </body>
 </html>
-
-
-
-<!--
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>UserPayApp Registration Form</title>
-    <link rel="stylesheet" href="../css/min.css">
-</head>
-<body>
-
-<h3>PayApp</h3>
-
-<form action="#" th:action="@{/beneficiariesUserList}" th:object="${beneficiariesUser}" method="POST">
-
-<div th:switch="${beneficiariesUser}" class="container my-5">
-    <div class="row">
-
-<h2 th:case="null">No BeneficiariesUser yet!</h2>
-<div th:case="*">
-    <h2 class="my-5">BeneficiariesUser</h2>
-    <table class="table table-striped table-responsive-md">
-        <thead>
-        <tr>
-            <th>IdUser</th>
-            <th>IdBeneficiary</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="beneficiaryUser : ${beneficiariesUser}">
-            <td th:text="${beneficiaryUser.idUser}"></td>
-            <td th:text="${beneficiaryUser.idBeneficiary}"></td>
-            <td><a th:href="@{/delete/{id}(id=${user.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
-
-        </tr>
-        </tbody>
-    </table>
-</div>
-    </div>
-</div>
-
-</body>
-</html>
--->

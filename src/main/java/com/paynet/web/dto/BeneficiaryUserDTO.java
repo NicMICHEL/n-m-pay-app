@@ -5,7 +5,6 @@ import java.util.Objects;
 public class BeneficiaryUserDTO {
 
     private String addBeneficiaryEmail;
-
     private String suppBeneficiaryEmail;
 
     public BeneficiaryUserDTO(String addBeneficiaryEmail, String suppBeneficiaryEmail) {
@@ -41,11 +40,13 @@ public class BeneficiaryUserDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof BeneficiaryUserDTO that)) return false;
-        return Objects.equals(getAddBeneficiaryEmail(), that.getAddBeneficiaryEmail()) && Objects.equals(getSuppBeneficiaryEmail(), that.getSuppBeneficiaryEmail());
+        return Objects.equals(getAddBeneficiaryEmail(), that.getAddBeneficiaryEmail())
+                && Objects.equals(getSuppBeneficiaryEmail(), that.getSuppBeneficiaryEmail());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getAddBeneficiaryEmail(), getSuppBeneficiaryEmail());
     }
+
 }

@@ -4,10 +4,8 @@ import com.paynet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.stereotype.Component;
 
 import java.security.Principal;
@@ -16,21 +14,20 @@ import java.util.Map;
 @Component
 public class ConnectedUserInfo implements IConnectedUserInfo {
 
+    @Autowired
+    private UserService userService;
+
     private final OAuth2AuthorizedClientService authorizedClientService;
 
     public ConnectedUserInfo(OAuth2AuthorizedClientService authorizedClientService) {
         this.authorizedClientService = authorizedClientService;
     }
 
-    @Autowired
-    private UserService userService;
-
-
     @Override
     public int getConnectedUserId(Principal user) {
         String connectedUserEmail = getConnectedUserEmail(user);
         return userService.getUserByEmail(connectedUserEmail).getIdUser();
-}
+    }
 
     @Override
     public String getConnectedUserEmail(Principal user) {
@@ -42,16 +39,17 @@ public class ConnectedUserInfo implements IConnectedUserInfo {
             return "NA";
         }
     }
+
     @Override
     public Boolean isInstanceOfOAuth2AuthenticationToken(Principal user) {
         return (user instanceof OAuth2AuthenticationToken);
     }
 
-    private String getUsernamePasswordLoginInfo(UsernamePasswordAuthenticationToken token){
-        if(token.isAuthenticated()){
+    private String getUsernamePasswordLoginInfo(UsernamePasswordAuthenticationToken token) {
+        if (token.isAuthenticated()) {
             User u = (User) token.getPrincipal();
             return u.getUsername();
-        } else{
+        } else {
             return "NA";
         }
     }
@@ -63,10 +61,6 @@ public class ConnectedUserInfo implements IConnectedUserInfo {
         } else {
             return "NA";
         }
-
     }
-
-
-
 
 }

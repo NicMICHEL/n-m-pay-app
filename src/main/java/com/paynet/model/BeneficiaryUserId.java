@@ -1,17 +1,11 @@
 package com.paynet.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-
 import java.io.Serializable;
 import java.util.Objects;
 
 public class BeneficiaryUserId implements Serializable {
 
     private int idUser;
-
     private int idBeneficiary;
 
     public BeneficiaryUserId() {
@@ -33,4 +27,5 @@ public class BeneficiaryUserId implements Serializable {
     public int hashCode() {
         return Objects.hash(idUser, idBeneficiary);
     }
+
 }

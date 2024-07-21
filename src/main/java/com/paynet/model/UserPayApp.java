@@ -1,6 +1,5 @@
 package com.paynet.model;
 
-
 import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -9,27 +8,25 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="u_user")
+@Table(name = "u_user")
 @DynamicUpdate
 public class UserPayApp {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="u_id")
+    @Column(name = "u_id")
     private int idUser;
-
-    @Column(name="u_email", unique=true)
+    @Column(name = "u_email", unique = true)
     private String email;
-    @Column(name="u_password")
+    @Column(name = "u_password")
     private String passWord;
-    @Column(name="u_account_balance")
+    @Column(name = "u_account_balance")
     private int accountBalance;
-    @Column(name="u_self_account")
+    @Column(name = "u_self_account")
     private String selfAccount;
     @Column(name = "u_role")
     private String role;
-
     @OneToMany(
-
             orphanRemoval = true,
             fetch = FetchType.EAGER, mappedBy = "idUser"
     )
@@ -118,7 +115,6 @@ public class UserPayApp {
         this.role = role;
     }
 
-    // !!!!
     @Override
     public String toString() {
         return "UserPayApp{" +
@@ -136,11 +132,16 @@ public class UserPayApp {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof UserPayApp that)) return false;
-        return getIdUser() == that.getIdUser() && getAccountBalance() == that.getAccountBalance() && Objects.equals(getEmail(), that.getEmail()) && Objects.equals(getPassWord(), that.getPassWord()) && Objects.equals(getSelfAccount(), that.getSelfAccount()) && Objects.equals(getRole(), that.getRole()) && Objects.equals(getBeneficiariesUser(), that.getBeneficiariesUser());
+        return getIdUser() == that.getIdUser() && getAccountBalance() == that.getAccountBalance()
+                && Objects.equals(getEmail(), that.getEmail()) && Objects.equals(getPassWord(), that.getPassWord())
+                && Objects.equals(getSelfAccount(), that.getSelfAccount()) && Objects.equals(getRole(), that.getRole())
+                && Objects.equals(getBeneficiariesUser(), that.getBeneficiariesUser());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdUser(), getEmail(), getPassWord(), getAccountBalance(), getSelfAccount(), getRole(), getBeneficiariesUser());
+        return Objects.hash(getIdUser(), getEmail(), getPassWord(), getAccountBalance(), getSelfAccount(),
+                getRole(), getBeneficiariesUser());
     }
+
 }

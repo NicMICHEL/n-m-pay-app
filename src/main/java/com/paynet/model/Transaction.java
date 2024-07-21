@@ -3,24 +3,24 @@ package com.paynet.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicUpdate;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name="t_transaction")
+@Table(name = "t_transaction")
 @DynamicUpdate
 public class Transaction {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="t_id")
+    @Column(name = "t_id")
     private int idTransaction;
-    @Column(name="t_debited_account")
+    @Column(name = "t_debited_account")
     private int debitedAccountId;
-    @Column(name="t_credited_account")
+    @Column(name = "t_credited_account")
     private int creditedAccountId;
-    @Column(name="t_amount")
+    @Column(name = "t_amount")
     private int amount;
-    @Column(name="t_description")
+    @Column(name = "t_description")
     private String description;
 
     public Transaction() {
@@ -88,11 +88,15 @@ public class Transaction {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Transaction that)) return false;
-        return getIdTransaction() == that.getIdTransaction() && getDebitedAccountId() == that.getDebitedAccountId() && getCreditedAccountId() == that.getCreditedAccountId() && getAmount() == that.getAmount() && Objects.equals(getDescription(), that.getDescription());
+        return getIdTransaction() == that.getIdTransaction() && getDebitedAccountId() == that.getDebitedAccountId()
+                && getCreditedAccountId() == that.getCreditedAccountId() && getAmount() == that.getAmount()
+                && Objects.equals(getDescription(), that.getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdTransaction(), getDebitedAccountId(), getCreditedAccountId(), getAmount(), getDescription());
+        return Objects.hash(getIdTransaction(), getDebitedAccountId(), getCreditedAccountId(), getAmount(),
+                getDescription());
     }
+
 }

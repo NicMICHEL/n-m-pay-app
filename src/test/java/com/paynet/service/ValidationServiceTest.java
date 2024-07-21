@@ -57,7 +57,8 @@ public class ValidationServiceTest {
         when(userService.getUsers()).thenReturn(allUsersList);
         String message = validationService.validateUserPayAppDTO(userPayAppDTOToValidate);
         verify(userService).getUsers();
-        assertEquals("l'adresse email ada@gmail.com est déjà utilisée."
+        assertEquals("L'adresse email ada@gmail.com est déjà utilisée. " +
+                "Veuillez en choisir une autre."
                 + "\n Votre mot de passe doit être renseigné."
                 +"\n Le compte bancaire associé doit être renseigné.", message);
     }

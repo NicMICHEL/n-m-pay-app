@@ -10,6 +10,19 @@ public class UserPayAppDTO {
 
     private String selfAccount;
 
+    public UserPayAppDTO() {
+    }
+
+    public UserPayAppDTO(String email, String passWord, String selfAccount) {
+        this.email = email;
+        this.passWord = passWord;
+        this.selfAccount = selfAccount;
+    }
+
+    public UserPayAppDTO(String email, String selfAccount) {
+        this.email = email;
+        this.selfAccount = selfAccount;
+    }
 
     public String getEmail() {
         return email;
@@ -39,15 +52,14 @@ public class UserPayAppDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof UserPayAppDTO that)) return false;
-        return Objects.equals(getEmail(), that.getEmail()) && Objects.equals(getPassWord(), that.getPassWord()) && Objects.equals(getSelfAccount(), that.getSelfAccount());
+        return Objects.equals(getEmail(), that.getEmail()) && Objects.equals(getPassWord(), that.getPassWord())
+                && Objects.equals(getSelfAccount(), that.getSelfAccount());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getEmail(), getPassWord(), getSelfAccount());
     }
-
-
 
     @Override
     public String toString() {
@@ -58,18 +70,4 @@ public class UserPayAppDTO {
                 '}';
     }
 
-    public UserPayAppDTO() {
-    }
-
-    //usage??
-    public UserPayAppDTO(String email, String passWord, String selfAccount) {
-        this.email = email;
-        this.passWord = passWord;
-        this.selfAccount = selfAccount;
-    }
-
-    public UserPayAppDTO(String email, String selfAccount) {
-        this.email = email;
-        this.selfAccount = selfAccount;
-    }
 }

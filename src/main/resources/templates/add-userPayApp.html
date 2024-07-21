@@ -1,104 +1,98 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>UserPayApp Registration Form</title>
-    <link rel="stylesheet" th:href="@{/css/min2.css}"/>
-
-</head>
-<body>
-
-
-
-<form action="#" th:action="@{/addUserPayApp}" th:object="${userPayAppDTO}" method="POST">
-
-    <br><br>
-
-    <div class="centerBox400">
-        <div></div>
-        <div>
-
-            <table class="t1">
-                <tr>
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td ></td>
-                    <td><span class="orangeLogo">Pay My Buddy</span></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td ></td>
-                    <td><input type="text"  th:field="*{email}" id="email" placeholder="Mail"
-                               class="input300"/></td>
-                    <td></td>
-                </tr>
-
-
-
-                <tr>
-                    <td ></td>
-                    <td>
-                        <input type="password" th:field="*{passWord}" id="passWord" placeholder="Mot de passe"
-                               class="input300"/></td>
-                    <td></td>
-                </tr>
-
-
-
-                <tr>
-                    <td ></td>
-                    <td ><input type="text" th:field="*{selfAccount}" id="selfAccount" placeholder="Compte bancaire associé"
-                                class="input300"/></td>
-
-                </tr>
-                <tr>
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-
-                <tr>
-                    <td ></td>
-                    <td><input type="submit" value="S'inscrire" class="blueButton2"/></td>
-                    <td ></td>
-                </tr>
-
-                <tr>
-                    <td ></td>
-                    <td><div th:if="${#fields.hasGlobalErrors()}">
-
-                        <p th:each="err : ${#fields.globalErrors() }" th:text="${err}" class="error" />
-                    </div></td>
-                    <td ></td>
-                </tr>
-                <tr>
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-
-            </table>
-        </div>
-        <div></div>
-    </div>
-
-
-    <br><br>
-
-
-</form>
-
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" th:href="@{/css/min.css}"/>
+        <title>Inscription form</title>
+    </head>
+    <body>
+        <form action="#" th:action="@{/addUserPayApp}" th:object="${userPayAppDTO}" method="POST">
+        <br>
+        <br>
+            <div class="centerBox400">
+                <div></div>
+                <div>
+                    <table class="t1">
+                        <tr>
+                            <td ></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td ></td>
+                            <td>
+                                <span class="orangeLogo">
+                                    Pay My Buddy
+                                </span>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td ></td>
+                            <td>
+                                <label for="email">
+                                    <input type="text" th:field="*{email}" id="email" placeholder="Mail"
+                                           class="input300"/>
+                                </label>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td ></td>
+                            <td>
+                                <label for="passWord">
+                                    <input type="password" th:field="*{passWord}" id="passWord"
+                                           placeholder="Mot de passe" class="input300"/>
+                                </label>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td ></td>
+                            <td >
+                                <label for="selfAccount">
+                                    <input type="text" th:field="*{selfAccount}" id="selfAccount"
+                                           placeholder="Compte bancaire associé" class="input300"/>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td ></td>
+                            <td>
+                                <input type="submit" value="S'inscrire" class="blueButton2"/>
+                            </td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td ></td>
+                            <td>
+                                <div th:if="${#fields.hasGlobalErrors()}">
+                                    <p th:each="err : ${#fields.globalErrors() }" th:text="${err}" class="error" />
+                                </div>
+                            </td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td ></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div></div>
+            </div>
+        <br>
+        <br>
+        </form>
+    </body>
 </html>

@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends CrudRepository<Transaction, Integer> {
-    List<Transaction> findByDebitedAccountId (Integer debitedAccountId);
+    List<Transaction> findByDebitedAccountId(Integer debitedAccountId);
+
 }

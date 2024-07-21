@@ -1,139 +1,107 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-
-    <meta charset="UTF-8" />
-    <title>Login page</title>
-    <link rel="stylesheet" th:href="@{/css/min2.css}"/>
-    <!--
-    <link rel="stylesheet" th:href="@{/css/min.css}"/>
-    -->
-</head>
-<body>
-
-
-<form action="#" th:action="@{/authenticateTheUser}"
-      method="POST">
-    <br><br>
-
-    <div class="centerBox400">
-        <div></div>
-        <div>
-
-            <table class="t1">
-                <tr>
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr>
-
-                    <td></td>
-                    <td><span class="orangeLogo">Pay My Buddy</span></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-
-                <tr>
-                    <td ></td>
-                    <td th:if="${param.error}">
-                    <i>Désolé! Votre mail et/ou mot de passe n'est pas valide.</i>
-                       </td>
-                    <td th:if="${param.logout}">
-                        <i>Vous avez été déconnecté(e).</i>
-                    </td>
-                </tr>
-
-
-
-                <tr>
-                    <td ></td>
-                    <td><input type="text" name="username" placeholder="Mail"
-                               class="input300"/></td>
-                    <td></td>
-                </tr>
-
-
-
-                <tr>
-                    <td ></td>
-                    <td ><input type="password" name="password" placeholder="Mot de passe"
-                                class="input300"/></td>
-
-                </tr>
-
-                <tr>
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td ></td>
-                    <td ><input type="submit" value="Se connecter" class="blueButton2"/></td>
-                    <td ></td>
-                </tr>
-
-
-
-                <tr>
-                    <td ></td>
-                    <td ><span>S'identifier avec Google</span><br><br><span><a href="/oauth2/authorization/google">Google</a></span></td>
-
-                </tr>
-
-
-
-                <tr>
-                    <td ></td>
-                    <td ><a class="funny" th:href="@{/inscription}" >Créer un compte</a></td>
-
-                </tr>
-                <tr>
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-
-
-
-
-            </table>
-        </div>
-        <div></div>
-    </div>
-
-</form>
-
-
-<!--
-<h2>S'identifier avec Google</h2>
-<tr>
-    <td>
-        <a href="/oauth2/authorization/google">Google</a>
-    </td>
-</tr>
-<tr>
-    <td>
-
-        <a th:href="@{/inscription}" >Créer un compte</a>
-    </td>
-</tr>
-
-
-<form th:action="@{/inscription}" method="get">
-    <button type="submit" th:text="'Créer 'un '+'+'compte'" class="navButton">
-        Créer un compte
-    </button>
-</form>
--->
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Login page</title>
+        <link rel="stylesheet" th:href="@{/css/min.css}"/>
+    </head>
+    <body>
+        <form action="#" th:action="@{/authenticateTheUser}" method="POST">
+            <br>
+            <br>
+            <div class="centerBox400">
+                <div></div>
+                <div>
+                    <table class="t1">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <span class="orangeLogo">
+                                    Pay My Buddy
+                                </span>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td ></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td th:if="${param.error}">
+                                <i>
+                                    Désolé! Votre mail et/ou mot de passe n'est pas valide.
+                                </i>
+                            </td>
+                            <td th:if="${param.logout}">
+                                <i>
+                                    Vous avez été déconnecté(e).
+                                </i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="text" name="username" placeholder="Mail" class="input300"/>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td ></td>
+                            <td >
+                                <input type="password" name="password" placeholder="Mot de passe"
+                                        class="input300"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" value="Se connecter" class="blueButton2"/>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td ></td>
+                            <td >
+                                <span>
+                                    S'identifier avec Google
+                                </span>
+                                <br><br>
+                                <span>
+                                    <a href="/oauth2/authorization/google">
+                                        Google
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ></td>
+                            <td >
+                                <a class="funny" th:href="@{/inscription}">
+                                    Créer un compte
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div></div>
+            </div>
+        </form>
+    </body>
 </html>
-
