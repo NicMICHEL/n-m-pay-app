@@ -10,7 +10,7 @@ create table u_user(
 u_id int PRIMARY KEY AUTO_INCREMENT,    
 u_email varchar(20) NOT NULL UNIQUE,
 u_password varchar(70) NOT NULL,
-u_account_balance float(8,2),
+u_account_balance float(8),
 u_self_account varchar(25) NOT NULL,
 u_role varchar(12) DEFAULT("USER"));
 
@@ -18,7 +18,7 @@ create table t_transaction(
  t_id int PRIMARY KEY AUTO_INCREMENT,
  t_debited_account int NOT NULL,
  t_credited_account int NOT NULL,
- t_amount float(8,2) NOT NULL,
+ t_amount float(8) NOT NULL,
  t_description varchar(30) NOT NULL);
 
  create table b_beneficiary_user(
