@@ -8,18 +8,18 @@ Each transaction is charged 0.5% of the transaction amount.
 
 ## Class diagram
 
-The class diagram and database structure are shown below :
+The class diagram and database structure are shown below (ClassDiagram.png file under the resources folder) :
 
-<img src="C:\Users\nicch\eclipse-workspace\n-m-pay-app\src\main\resources\ClassDiagram.png" width="400"/>
+<img src="src\main\resources\ClassDiagram.png" width="400"/>
 
 
 ## Prerequisites
 
 This app uses Java to run and stores the data in Mysql DB.
 To install the software, you need 
-Java 17
-Maven 3.9.6
-Mysql 8.0.34
+Java 17 ,
+Maven 3.9.6 ,
+Mysql 8.0.34 
 
 After installing mysql, you will be asked to configure the password for the default root account.
 This code uses the default root account to connect and the password can be set as rootroot.

@@ -5,13 +5,13 @@ import java.util.Objects;
 public class TransactionDTO {
     private String emailDebitedAccount;
     private String emailCreditedAccount;
-    private int amount;
+    private float amount;
     private String description;
 
     public TransactionDTO() {
     }
 
-    public TransactionDTO(String emailDebitedAccount, String emailCreditedAccount, int amount, String description) {
+    public TransactionDTO(String emailDebitedAccount, String emailCreditedAccount, float amount, String description) {
         this.emailDebitedAccount = emailDebitedAccount;
         this.emailCreditedAccount = emailCreditedAccount;
         this.amount = amount;
@@ -34,11 +34,11 @@ public class TransactionDTO {
         this.emailCreditedAccount = emailCreditedAccount;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 

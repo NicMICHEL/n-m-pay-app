@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,12 +49,13 @@ public class TransactionService {
     public void saveTransaction(Transaction transaction) throws InsufficientAccountBalanceException,
             IllegalArgumentException {
         UserPayApp debitedUser = userService.getUserById(transaction.getDebitedAccountId());
-        int initialDebitedUserAccountBalance = debitedUser.getAccountBalance();
-        //each transaction is charged 0.5% of the transaction amount
-        if (transaction.getAmount() <= (int) (initialDebitedUserAccountBalance / 1.005)) {
-            debitedUser.setAccountBalance((int) (initialDebitedUserAccountBalance - (transaction.getAmount() * 1.005)));
+        float initialDebitedUserAccountBalance = debitedUser.getAccountBalance();
+        if (transaction.getAmount() <= roundDownToTheNearestHundredth(
+                (float) (initialDebitedUserAccountBalance / 1.005)) ) {
+            debitedUser.setAccountBalance(roundDownToTheNearestHundredth(
+                    (float) (initialDebitedUserAccountBalance - transaction.getAmount() * 1.005)) );
             UserPayApp creditedUser = userService.getUserById(transaction.getCreditedAccountId());
-            int initialCreditedUserAccountBalance = creditedUser.getAccountBalance();
+            float initialCreditedUserAccountBalance = creditedUser.getAccountBalance();
             creditedUser.setAccountBalance(initialCreditedUserAccountBalance + transaction.getAmount());
             userService.saveUser(debitedUser);
             userService.saveUser(creditedUser);
@@ -61,5 +64,10 @@ public class TransactionService {
             throw new InsufficientAccountBalanceException("Solde insuffisant sur le compte");
         }
     }
+
+public float roundDownToTheNearestHundredth(float value) {
+    BigDecimal bd = new BigDecimal(Float.toString(value));
+    bd = bd.setScale(2, RoundingMode.HALF_UP);
+    return bd.floatValue();}
 
 }

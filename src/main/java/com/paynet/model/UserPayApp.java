@@ -21,7 +21,7 @@ public class UserPayApp {
     @Column(name = "u_password")
     private String passWord;
     @Column(name = "u_account_balance")
-    private int accountBalance;
+    private float accountBalance;
     @Column(name = "u_self_account")
     private String selfAccount;
     @Column(name = "u_role")
@@ -42,7 +42,7 @@ public class UserPayApp {
         this.selfAccount = selfAccount;
     }
 
-    public UserPayApp(int idUser, String email, String passWord, int accountBalance, String selfAccount) {
+    public UserPayApp(int idUser, String email, String passWord, float accountBalance, String selfAccount) {
         this.idUser = idUser;
         this.email = email;
         this.passWord = passWord;
@@ -50,7 +50,7 @@ public class UserPayApp {
         this.selfAccount = selfAccount;
     }
 
-    public UserPayApp(int idUser, String email, String passWord, int accountBalance, String selfAccount, String role) {
+    public UserPayApp(int idUser, String email, String passWord, float accountBalance, String selfAccount, String role) {
         this.idUser = idUser;
         this.email = email;
         this.passWord = passWord;
@@ -83,11 +83,11 @@ public class UserPayApp {
         this.email = email;
     }
 
-    public int getAccountBalance() {
+    public float getAccountBalance() {
         return accountBalance;
     }
 
-    public void setAccountBalance(int accountBalance) {
+    public void setAccountBalance(float accountBalance) {
         this.accountBalance = accountBalance;
     }
 

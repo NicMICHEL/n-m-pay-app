@@ -57,20 +57,21 @@ public class TransactionControllerTest {
     public void should_redirect_to_add_transaction_page_successfully() throws Exception {
         //given
         UserPayApp userPayApp = new UserPayApp(6, "erin@gmail.com", "erin",
-                1000, "erin BANK");
-        Transaction transaction = new Transaction(6, 1, 15,
+                1000F, "erin BANK");
+        Transaction transaction = new Transaction(6, 1, 15F,
                 "dette jeu");
         List<Transaction> transactions = new ArrayList<>();
         transactions.add(transaction);
         List<TransactionDTO> expectedPastTransactionDTOs = new ArrayList<>();
         TransactionDTO pastTransactionDTO = new TransactionDTO("erin@gmail.com",
-                "rob@gmail.com", 15, "dette jeu");
+                "rob@gmail.com", 15F, "dette jeu");
         expectedPastTransactionDTOs.add(pastTransactionDTO);
         List<String> expectedEmailsBeneficiariesUserList = new ArrayList<>();
         expectedEmailsBeneficiariesUserList.add("rob@gmail.com");
         TransactionDTO containerObjectTransactionDTO = new TransactionDTO();
         when(connectedUserInfo.getConnectedUserId(any(Principal.class))).thenReturn(6);
         when(transactionService.findByDebitedAccountId(6)).thenReturn(transactions);
+        when(transactionService.roundDownToTheNearestHundredth(any(Float.class))).thenReturn(995.02F);
         when(userService.getEmailById(6)).thenReturn("erin@gmail.com");
         when(userService.getEmailById(1)).thenReturn("rob@gmail.com");
         when(userService.getUserById(6)).thenReturn(userPayApp);
@@ -85,7 +86,7 @@ public class TransactionControllerTest {
                 .andExpect(model().attributeExists("transactionDTO"))
                 .andExpect(model().attribute("transactionDTO", containerObjectTransactionDTO))
                 .andExpect(model().attributeExists("amountMax"))
-                .andExpect(model().attribute("amountMax", 995))
+                .andExpect(model().attribute("amountMax", 995.02F))
                 .andExpect(model().attributeExists("pastTransactionDTOs"))
                 .andExpect(model().attribute("pastTransactionDTOs", expectedPastTransactionDTOs))
                 .andExpect(model().attributeExists("emailsBeneficiariesUserList"))
@@ -96,26 +97,26 @@ public class TransactionControllerTest {
     @WithMockUser(username = "user")
     public void should_add_transaction_successfully() throws Exception {
         //given
-        UserPayApp userPayAppRob = new UserPayApp(1, "rob@gmail.com", "rob", 50,
+        UserPayApp userPayAppRob = new UserPayApp(1, "rob@gmail.com", "rob", 50F,
                 "rob BANK");
         UserPayApp userPayAppErin = new UserPayApp(6, "erin@gmail.com",
-                "erin", 5, "erin BANK");
+                "erin", 5F, "erin BANK");
         TransactionDTO transactionDTO = new TransactionDTO(
-                "erin@gmail.com", "rob@gmail.com", 25,
+                "erin@gmail.com", "rob@gmail.com", 25F,
                 "ticket concert");
-        Transaction transaction = new Transaction(6, 1, 25,
+        Transaction transaction = new Transaction(6, 1, 25F,
                 "ticket concert");
-        Transaction pastTransaction = new Transaction(6, 1, 15,
+        Transaction pastTransaction = new Transaction(6, 1, 15F,
                 "dette jeu");
         List<Transaction> transactions = new ArrayList<>();
         transactions.add(pastTransaction);
         transactions.add(transaction);
         TransactionDTO expectedTransactionDTO = new TransactionDTO("erin@gmail.com",
-                "rob@gmail.com", 25, "ticket concert");
+                "rob@gmail.com", 25F, "ticket concert");
         //expectedTransactionDTO.setEmailDebitedAccount("erin@gmail.com");
         List<TransactionDTO> expectedPastTransactionDTOs = new ArrayList<>();
         TransactionDTO pastTransactionDTO = new TransactionDTO("erin@gmail.com",
-                "rob@gmail.com", 15, "dette jeu");
+                "rob@gmail.com", 15F, "dette jeu");
         expectedPastTransactionDTOs.add(pastTransactionDTO);
         expectedPastTransactionDTOs.add(transactionDTO);
         List<String> expectedEmailsBeneficiariesUserList = new ArrayList<>();
@@ -128,6 +129,7 @@ public class TransactionControllerTest {
         when(userService.getEmailById(6)).thenReturn("erin@gmail.com");
         when(userService.getEmailById(1)).thenReturn("rob@gmail.com");
         when(userService.getUserById(6)).thenReturn(userPayAppErin);
+        when(transactionService.roundDownToTheNearestHundredth(any(Float.class))).thenReturn(4.98F);
         when(beneficiaryUserService.getEmailsBeneficiariesUserList(6))
                 .thenReturn(expectedEmailsBeneficiariesUserList);
         //when
@@ -142,7 +144,7 @@ public class TransactionControllerTest {
                 .andExpect(model().attributeExists("transactionDTO"))
                 .andExpect(model().attribute("transactionDTO", containerObjectTransactionDTO))
                 .andExpect(model().attributeExists("amountMax"))
-                .andExpect(model().attribute("amountMax", 4))
+                .andExpect(model().attribute("amountMax", 4.98F))
                 .andExpect(model().attributeExists("pastTransactionDTOs"))
                 .andExpect(model().attribute("pastTransactionDTOs", expectedPastTransactionDTOs))
                 .andExpect(model().attributeExists("emailsBeneficiariesUserList"))
@@ -156,19 +158,19 @@ public class TransactionControllerTest {
     public void should_return_to_add_transaction_page_without_saving_transaction() throws Exception {
         //given
         UserPayApp userPayAppErin = new UserPayApp(6, "erin@gmail.com",
-                "erin", 30, "erin BANK");
-        Transaction pastTransaction = new Transaction(6, 1, 15,
+                "erin", 30F, "erin BANK");
+        Transaction pastTransaction = new Transaction(6, 1, 15F,
                 "dette jeu");
         List<Transaction> transactions = new ArrayList<>();
         transactions.add(pastTransaction);
         List<TransactionDTO> expectedPastTransactionDTOs = new ArrayList<>();
         TransactionDTO pastTransactionDTO = new TransactionDTO("erin@gmail.com",
-                "rob@gmail.com", 15, "dette jeu");
+                "rob@gmail.com", 15F, "dette jeu");
         expectedPastTransactionDTOs.add(pastTransactionDTO);
         List<String> expectedEmailsBeneficiariesUserList = new ArrayList<>();
         expectedEmailsBeneficiariesUserList.add("rob@gmail.com");
         TransactionDTO containerObjectTransactionDTO = new TransactionDTO(null,
-                "0", 0, "");
+                "0", 0F, "");
         when(connectedUserInfo.getConnectedUserId(any(Principal.class))).thenReturn(6);
         when(validationService.validateTransactionDTO(any(TransactionDTO.class)))
                 .thenReturn(" Le bénéficiaire doit être renseigné."
@@ -177,6 +179,7 @@ public class TransactionControllerTest {
         when(transactionService.findByDebitedAccountId(6)).thenReturn(transactions);
         when(userService.getEmailById(6)).thenReturn("erin@gmail.com");
         when(userService.getEmailById(1)).thenReturn("rob@gmail.com");
+        when(transactionService.roundDownToTheNearestHundredth(any(Float.class))).thenReturn(29.86F);
         when(beneficiaryUserService.getEmailsBeneficiariesUserList(6))
                 .thenReturn(expectedEmailsBeneficiariesUserList);
         when(userService.getUserById(6)).thenReturn(userPayAppErin);
@@ -192,7 +195,7 @@ public class TransactionControllerTest {
                 .andExpect(model().attributeExists("transactionDTO"))
                 .andExpect(model().attribute("transactionDTO", containerObjectTransactionDTO))
                 .andExpect(model().attributeExists("amountMax"))
-                .andExpect(model().attribute("amountMax", 29))
+                .andExpect(model().attribute("amountMax", 29.86F))
                 .andExpect(model().attributeExists("pastTransactionDTOs"))
                 .andExpect(model().attribute("pastTransactionDTOs", expectedPastTransactionDTOs))
                 .andExpect(model().attributeExists("emailsBeneficiariesUserList"))

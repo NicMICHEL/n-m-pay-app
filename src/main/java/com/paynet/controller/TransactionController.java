@@ -7,7 +7,6 @@ import com.paynet.service.TransactionService;
 import com.paynet.service.UserService;
 import com.paynet.service.ValidationService;
 import com.paynet.web.dto.TransactionDTO;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -78,8 +77,9 @@ public class TransactionController {
         }
         //Each transaction is charged 0.5% of the transaction amount
         //So the maximum amount available for a transaction is the account balance divided by 1.005
-        int amountMax = (int) (userService.getUserById(connectedUserId).getAccountBalance() / 1.005);
-        model.addAttribute("amountMax", amountMax);
+        float amountMax = transactionService.roundDownToTheNearestHundredth(
+                (float) ((userService.getUserById(connectedUserId).getAccountBalance()) / 1.005));
+                model.addAttribute("amountMax", amountMax);
         model.addAttribute("pastTransactionDTOs", pastTransactionDTOs);
         model.addAttribute("emailsBeneficiariesUserList",
                 beneficiaryUserService.getEmailsBeneficiariesUserList(connectedUserId));

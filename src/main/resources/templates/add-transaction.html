@@ -6,7 +6,7 @@
         <title>Transaction page</title>
     </head>
     <body>
-        <header th:insert="~{fragments/general.html :: navigationbar}"></header>
+        <header th:insert="~{fragments/navigationBar.html :: navigationbar}"></header>
         <br>
         <br>
         <form action="#" th:action="@{/addTransaction}" th:object="${transactionDTO}" method="POST">
@@ -29,7 +29,7 @@
                 </label>
                 <label>
                     <br>
-                    <input type="number" min="0" th:max="${amountMax}" th:field="*{amount}" placeholder="0"
+                    <input type="number" min="0.00" th:max="${amountMax}" step="0.01" th:field="*{amount}" placeholder="0.00"
                            class="input150"/>
                     <span>€</span>
                 </label>

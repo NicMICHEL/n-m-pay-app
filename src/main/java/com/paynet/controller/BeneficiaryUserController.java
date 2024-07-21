@@ -5,7 +5,6 @@ import com.paynet.service.BeneficiaryUserService;
 import com.paynet.service.UserService;
 import com.paynet.service.ValidationService;
 import com.paynet.web.dto.BeneficiaryUserDTO;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -35,7 +34,7 @@ public class BeneficiaryUserController {
     public String showModifyBeneficiaryUserList(Model model, Principal user) {
         BeneficiaryUserDTO beneficiaryUserDTO = new BeneficiaryUserDTO("0", "0");
         setBeneficiariesUserListAttributes(model, user, beneficiaryUserDTO);
-        return "beneficiariesUserList";
+        return "modify-beneficiariesUserList";
     }
 
     public void setBeneficiariesUserListAttributes(Model model, Principal user,
@@ -61,7 +60,7 @@ public class BeneficiaryUserController {
         }
         if (result.hasErrors()) {
             setBeneficiariesUserListAttributes(model, user, beneficiaryUserDTO);
-            return "beneficiariesUserList";
+            return "modify-beneficiariesUserList";
         }
         String addBeneficiaryEmail = beneficiaryUserDTO.getAddBeneficiaryEmail();
         if (!Objects.equals(addBeneficiaryEmail, "0")) {

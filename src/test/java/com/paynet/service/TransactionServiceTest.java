@@ -36,26 +36,26 @@ public class TransactionServiceTest {
         //given
         UserPayApp debitedUser = new UserPayApp();
         debitedUser.setIdUser(1);
-        debitedUser.setAccountBalance(10);
+        debitedUser.setAccountBalance(10F);
         UserPayApp creditedUser = new UserPayApp();
         creditedUser.setIdUser(2);
-        creditedUser.setAccountBalance(0);
+        creditedUser.setAccountBalance(0F);
         Transaction transaction = new Transaction();
         transaction.setDebitedAccountId(1);
         transaction.setIdCreditedAccount(2);
-        transaction.setAmount(9);
+        transaction.setAmount(9F);
         when(userService.getUserById(transaction.getDebitedAccountId())).thenReturn(debitedUser);
         when(userService.getUserById(transaction.getCreditedAccountId())).thenReturn(creditedUser);
         //when
-        transactionService.saveTransaction(transaction);
+       transactionService.saveTransaction(transaction);
         //then
         verify(userService).getUserById(transaction.getDebitedAccountId());
         verify(userService).getUserById(transaction.getCreditedAccountId());
         verify(userService).saveUser(debitedUser);
         verify(userService).saveUser(creditedUser);
         verify(transactionRepository).save(transaction);
-        assertEquals(debitedUser.getAccountBalance(), 0);
-        assertEquals(creditedUser.getAccountBalance(), 9);
+        assertEquals(9F, creditedUser.getAccountBalance());
+        assertEquals(0.96F, debitedUser.getAccountBalance());
         assertEquals(creditedUser.getIdUser(), transaction.getCreditedAccountId());
         assertEquals(debitedUser.getIdUser(), transaction.getDebitedAccountId());
     }
@@ -65,14 +65,14 @@ public class TransactionServiceTest {
         //given
         UserPayApp debitedUser = new UserPayApp();
         debitedUser.setIdUser(1);
-        debitedUser.setAccountBalance(10);
+        debitedUser.setAccountBalance(10F);
         UserPayApp creditedUser = new UserPayApp();
         creditedUser.setIdUser(2);
-        creditedUser.setAccountBalance(0);
+        creditedUser.setAccountBalance(0F);
         Transaction transaction = new Transaction();
         transaction.setDebitedAccountId(1);
         transaction.setIdCreditedAccount(2);
-        transaction.setAmount(10);
+        transaction.setAmount(10F);
         when(userService.getUserById(transaction.getDebitedAccountId())).thenReturn(debitedUser);
         //when
         InsufficientAccountBalanceException thrown = assertThrows(InsufficientAccountBalanceException.class, () -> {
@@ -81,8 +81,8 @@ public class TransactionServiceTest {
         //then
         assertEquals("Solde insuffisant sur le compte", thrown.getMessage());
         verify(userService).getUserById(transaction.getDebitedAccountId());
-        assertEquals(debitedUser.getAccountBalance(), 10);
-        assertEquals(creditedUser.getAccountBalance(), 0);
+        assertEquals(debitedUser.getAccountBalance(), 10F);
+        assertEquals(creditedUser.getAccountBalance(), 0F);
         assertEquals(creditedUser.getIdUser(), transaction.getCreditedAccountId());
         assertEquals(debitedUser.getIdUser(), transaction.getDebitedAccountId());
     }

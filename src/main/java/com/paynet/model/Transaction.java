@@ -19,21 +19,21 @@ public class Transaction {
     @Column(name = "t_credited_account")
     private int creditedAccountId;
     @Column(name = "t_amount")
-    private int amount;
+    private float amount;
     @Column(name = "t_description")
     private String description;
 
     public Transaction() {
     }
 
-    public Transaction(int debitedAccountId, int creditedAccountId, int amount, String description) {
+    public Transaction(int debitedAccountId, int creditedAccountId, float amount, String description) {
         this.debitedAccountId = debitedAccountId;
         this.creditedAccountId = creditedAccountId;
         this.amount = amount;
         this.description = description;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
@@ -69,7 +69,7 @@ public class Transaction {
         this.description = description;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 

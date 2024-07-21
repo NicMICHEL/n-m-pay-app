@@ -6,7 +6,7 @@
         <link rel="stylesheet" th:href="@{/css/min.css}"/>
     </head>
     <body>
-        <header th:insert="~{fragments/general.html :: navigationbar}"></header>
+        <header th:insert="~{fragments/navigationBar.html :: navigationbar}"></header>
         <form action="#" th:action="@{/updateUserPayApp}" th:object="${userPayAppDTO}" method="POST">
             <br><br>
             <div class="centerBox700">
