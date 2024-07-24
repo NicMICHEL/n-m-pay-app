@@ -65,7 +65,7 @@ public class BeneficiaryUserControllerTest {
         mockMvc.perform(get("/editBeneficiariesUserList"))
                 //then
                 .andDo(print())
-                .andExpect(view().name("beneficiariesUserList"))
+                .andExpect(view().name("modify-beneficiariesUserList"))
                 .andExpect(model().attributeExists("beneficiaryUserDTO"))
                 .andExpect(model().attribute("beneficiaryUserDTO", expectedBeneficiaryUserDTO))
                 .andExpect(model().attributeExists("emailsBeneficiariesUserList"))
@@ -107,7 +107,7 @@ public class BeneficiaryUserControllerTest {
                         .param("suppBeneficiaryEmail", "ken@gmail.com"))
                 //then
                 .andDo(print())
-                .andExpect(view().name("beneficiariesUserList"))
+                .andExpect(view().name("modify-beneficiariesUserList"))
                 .andExpect(model().attributeExists("beneficiaryUserDTO"))
                 .andExpect(model().attribute("beneficiaryUserDTO", expectedBeneficiaryUserDTO))
                 .andExpect(model().attributeExists("emailsBeneficiariesUserList"))
@@ -143,7 +143,7 @@ public class BeneficiaryUserControllerTest {
                         .param("addBeneficiaryEmail", "0")
                         .param("suppBeneficiaryEmail", "0"))
                 //then
-                .andExpect(view().name("beneficiariesUserList"))
+                .andExpect(view().name("modify-beneficiariesUserList"))
                 .andExpect(model().attribute("beneficiaryUserDTO", expectedBeneficiaryUserDTO))
                 .andExpect(model().attributeExists("emailsBeneficiariesUserList"))
                 .andExpect(model().attribute("emailsBeneficiariesUserList", expectedEmailsBeneficiariesUserList))
